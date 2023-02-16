@@ -3,7 +3,7 @@ title: Assistenza Jet
 publishDate: 2022-10-15 00:00:00
 img: /assets/assistenza-jet.jpg
 img_alt:  Assistenza Jet - Federico.im
-description: Ti presento l’e-commerce che sviluppato per Assistenza Jet in collaborazione con <a href="//https:dmgraphics.it">DMGraphics</a>. Una realtà nata nel 2014 con l’obiettivo di fornire un servizio di eccellenza nella riparazione di tutti i dispositivi tecnologici. 
+description: Ti presento l’e-commerce che sviluppato per Assistenza Jet in collaborazione con [DMGraphics](https:dmgraphics.it). Una realtà nata nel 2014 con l’obiettivo di fornire un servizio di eccellenza nella riparazione di tutti i dispositivi tecnologici. 
 tags:
   - E-Commerce
   - Digital Marketing
