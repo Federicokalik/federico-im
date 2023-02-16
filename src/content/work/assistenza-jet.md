@@ -6,7 +6,7 @@ img_alt:  Assistenza Jet - Federico.im
 description: Ti presento l’e-commerce che sviluppato per Assistenza Jet in collaborazione con DMGraphics. Assistenza Jet è una realtà nata nel 2014 con l’obiettivo di fornire un servizio di eccellenza nella riparazione di tutti i dispositivi tecnologici. 
 tags:
   - E-Commerce
-  - Digital Marketing
+  - Web Mastering
 ---
 ## Descrizione Progetto:
 
@@ -22,7 +22,6 @@ Per Assistenza Jet, sono intervenuto solamente lato "backend", ovvero nel config
 					src="/assets/assistenza-jet-2.jpg"
 					alt="Nuova Bacheca"
 				/>
-
 <img
 					src="/assets/assistenza-jet-3.jpg"
 					alt="Nuova pagina di Accesso"
