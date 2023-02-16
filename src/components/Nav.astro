@@ -190,6 +190,7 @@ const iconLinks: { label: string; href: string; icon: IconProps['icon'] }[] = [
 		display: inline-block;
 		color: var(--gray-300);
 		text-decoration: none;
+		-webkit-tap-highlight-color: transparent;
 	}
 
 	.link.active {
@@ -222,6 +223,8 @@ const iconLinks: { label: string; href: string; icon: IconProps['icon'] }[] = [
 		text-decoration: none;
 		color: var(--accent-dark);
 		transition: color var(--theme-transition);
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+		-webkit-tap-highlight-color: transparent;
 	}
 
 	.social:hover,
