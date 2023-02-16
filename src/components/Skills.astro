@@ -3,15 +3,15 @@ import Icon from './Icon.astro';
 ---
 
 <section class="box skills">
-	<div class="stack gap-2 lg:gap-4">
+	<div class="stack center gap-2 lg:gap-4">
 		<Icon icon="esperienza" color="var(--accent-regular)" size="2.5rem" gradient />
 		<p>Oltre 6 anni di esperienza</p>
 	</div>
-	<div class="stack gap-2 lg:gap-4">
+	<div class="stack center gap-2 lg:gap-4">
 		<Icon icon="terminal-window" color="var(--accent-regular)" size="2.5rem" gradient />
-		<p>Esperto del CMS wordpress (anche se a volte scrivo qualche riga di codice, come per questo portfolio)</p>
+		<p>Esperto del CMS WordPress<br>(anche se a volte scrivo qualche riga di codice, <a href="https://github.com/Federicokalik/federico-im">come per questo portfolio)</a></p>
 	</div>
-	<div class="stack gap-2 lg:gap-4">
+	<div class="stack center gap-2 lg:gap-4">
 		<Icon icon="caffe" color="var(--accent-regular)" size="2.5rem" gradient />
 		<p>Più di 999 tazze di caffè bevute</p>
 	</div>
@@ -38,6 +38,11 @@ import Icon from './Icon.astro';
 
 	.skills p {
 		color: var(--gray-400);
+	}
+
+	.center{
+		align-items: center;
+		text-align: center;
 	}
 
 	@media (min-width: 50em) {
