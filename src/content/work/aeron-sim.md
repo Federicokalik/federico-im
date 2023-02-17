@@ -20,18 +20,17 @@ Lato marketing invece, grazie ad un importante piano d’azione, le vendite ed i
 
 <img
 					src="/assets/aeron-sim-1.jpg"
-					alt="Jeanine White at work with a colleague"
+					alt="Homepage Aeron Sim"
 				/>
 <img
 					src="/assets/aeron-sim-2.jpg"
-					alt="Jeanine White at work with a colleague"
+					alt="Shop Aeron Sim"
 				/>
-
 <img
 					src="/assets/aeron-sim-3.jpg"
-					alt="Jeanine White at work with a colleague"
+					alt="Prodotto Aerons Sim"
 				/>
 <img
 					src="/assets/aeron-sim-4.jpg"
-					alt="Jeanine White at work with a colleague"
+					alt="Checkout Aeron"
 				/>

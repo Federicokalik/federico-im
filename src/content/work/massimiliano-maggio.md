@@ -25,7 +25,6 @@ Il sito è stato realizzato tramite WordPress, con uno stile grafico molto elega
 					src="/assets/massimiliano-maggio-3.jpg"
 					alt="Blog Massimiliano Maggio"
 				/>
-
 <img
 					src="/assets/massimiliano-maggio-4.jpg"
 					alt="Prodotto Massimiliano Maggio"

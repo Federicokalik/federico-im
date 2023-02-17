@@ -16,7 +16,7 @@ Per Pool Tech Piscine ho deciso di cambiare completamente lo stile grafico del s
 
 Lato marketing invece, sul sito web, è stata apportata una ottimizzazione in ambito S.E.O. ed una correzione nei testi e nelle parole chiave della pagina “My Business” di Google (cercando le parole realizzazione piscine o progettazione piscine risulta essere la prima).
 
-- <a href="https://pooltechpiscine.it/">pooltechpiscine.it/</a>
+- <a href="https://pooltechpiscine.it">pooltechpiscine.it</a>
 
 <img
 					src="/assets/ptp1.webp"
@@ -26,7 +26,6 @@ Lato marketing invece, sul sito web, è stata apportata una ottimizzazione in am
 					src="/assets/ptp2.webp"
 					alt="Portfolio Lavori Pooltech Piscine"
 				/>
-
 <img
 					src="/assets/ptp3.png"
 					alt="Chi siamo Pooltech Piscine"
