@@ -13,9 +13,7 @@ tags:
 
 
 
-Ti presento il sito web che ho sviluppato per Massimiliano Maggio.
-Un Brand Italiano esperto nella realizzazione di Biliardi Tavolo di Lusso, i quali vengono realizzati interamente a mano.
-Il sito è stato realizzato tramite WordPress, con uno stile grafico molto elegante e minimal, utilizzando il nero come colore predominante, in modo da portare l'attenzione sul prodotto.
+Ti presento il sito web che ho sviluppato per Massimiliano Maggio. Un Brand Italiano esperto nella realizzazione di Biliardi Tavolo di Lusso, i quali vengono realizzati interamente a mano. Il sito è stato realizzato tramite WordPress, con uno stile grafico molto elegante e minimal, utilizzando il nero come colore predominante, in modo da portare l'attenzione sul prodotto.
 
 - <a href="https://massimilianomaggio.it/">massimilianomaggio.it</a>
 
