@@ -3,8 +3,7 @@ title: Pina G Milano
 publishDate: 2023-04-10 00:00:00
 img: /assets/pinag.jpg
 img_alt:  Pina G Milano - Federico.im
-description: Ti presento l’e-commerce che ho sviluppato per l’Pina G. Un brand di moda che realizza Camicie.
-L'ecommerce è stato realizzato in collaborazione con la 3PCOMUNICATION.
+description: Ti presento l’e-commerce che ho sviluppato per l’Pina G. Un brand di moda che realizza Camicie. L'ecommerce è stato realizzato in collaborazione con la 3PCOMUNICATION.
 tags:
   - E-Commerce
 ---
