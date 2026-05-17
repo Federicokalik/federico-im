@@ -1,76 +1,192 @@
 ---
-import Icon from './Icon.astro';
 const currentYear = new Date().getFullYear();
+const careerStart = new Date('2016-01-01T00:00:00Z');
+const daysPlaying = Math.floor((Date.now() - careerStart.getTime()) / 86_400_000);
+const socials = [
+	{ label: 'WHATSAPP',  href: 'https://wa.me/393517773467' },
+	{ label: 'INSTAGRAM', href: 'https://www.instagram.com/calicchiadesign/' },
+	{ label: 'DISCORD',   href: 'https://discord.gg/uXrWXBTfPm' },
+	{ label: 'GITHUB',    href: 'https://github.com/federicokalik' },
+	{ label: 'TEL',       href: 'tel:+393517773467' },
+];
 ---
 
-<footer>
-	<div class="group">
-		<p>
-			Designed & Developed with <a href="https://astro.build/">Astro</a>
-			<Icon icon="rocket-launch" size="1.2em" />
-		</p>
-		<p>&copy; {currentYear} <a href="https://calicchia.design/">Calicchia Design di Federico Calicchia</a> P.IVA 03160480608</p>
+<footer class="fk-footer">
+	<div class="fk-footer__inner wrapper">
+		<div class="fk-footer__col">
+			<p class="fk-footer__line">
+				<span class="fk-footer__heart" aria-hidden="true">&#9829;</span>
+				DESIGNED &amp; DEVELOPED WITH ASTRO + NES.CSS
+			</p>
+			<p class="fk-footer__line fk-footer__line--dim">
+				&copy; {currentYear} <a class="fk-footer__brandlink" href="https://calicchia.design" target="_blank" rel="noopener noreferrer">CALICCHIA DESIGN</a> &middot; P.IVA 03160480608
+			</p>
+			<p class="fk-footer__line fk-footer__line--dim">
+				<a class="fk-footer__legallink" href="/privacy">&#9654; PRIVACY &amp; ACCESSIBILITY</a>
+			</p>
+		</div>
+
+		<ul class="fk-footer__socials" role="list">
+			{socials.map(({ label, href }) => (
+				<li>
+					<a href={href} class="fk-footer__sociallink" target="_blank" rel="noopener noreferrer">
+						<span aria-hidden="true">&#9654;</span> {label}
+					</a>
+				</li>
+			))}
+		</ul>
 	</div>
-	<p class="socials">
-		<a href="https://discord.gg/uXrWXBTfPm">Server Discord</a>
-		<a href="https://wa.me/393517773467"> WhatsApp</a>
-		<a href="tel:+39 351 777 3467">Telefono</a>
-		<a href="https://www.instagram.com/calicchiadesign/"> Instagram</a>
-		<a href="https://github.com/federicokalik"> GitHub</a>
-	</p>
+	<div class="fk-footer__signature" title={`Giorni dall'inizio della mia carriera (1 gennaio 2016)`}>
+		<span aria-hidden="true">DAYS PLAYING</span>
+		<span class="fk-footer__score" data-fk-counter="days-since-2016">{daysPlaying.toLocaleString('it-IT')}</span>
+		<span aria-hidden="true">&#10084;&#10084;&#10084;</span>
+		<span class="sr-only">Giorni dall'inizio della mia carriera nel web design</span>
+	</div>
 </footer>
+
 <style>
-	footer {
+	.fk-footer {
+		margin-top: var(--sp-16);
+		padding-block: var(--sp-12) var(--sp-8);
+		border-top: 4px solid var(--c-text);
+		background:
+			linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-elev) 100%);
+		position: relative;
+	}
+
+	.fk-footer::before {
+		content: "";
+		position: absolute;
+		top: -8px;
+		left: 0;
+		right: 0;
+		height: 4px;
+		background: repeating-linear-gradient(
+			to right,
+			var(--c-pink) 0,
+			var(--c-pink) 12px,
+			var(--c-blue) 12px,
+			var(--c-blue) 24px,
+			var(--c-violet) 24px,
+			var(--c-violet) 36px,
+			var(--c-lime) 36px,
+			var(--c-lime) 48px
+		);
+	}
+
+	.fk-footer__inner {
 		display: flex;
 		flex-direction: column;
-		gap: 3rem;
-		margin-top: auto;
-		padding: 3rem 2rem 3rem;
+		gap: var(--sp-6);
+	}
+
+	.fk-footer__col {
+		display: flex;
+		flex-direction: column;
+		gap: var(--sp-2);
+	}
+
+	.fk-footer__line {
+		font-family: var(--f-display);
+		font-size: var(--fs-xs);
+		color: var(--c-text);
+		letter-spacing: 0.06em;
+		margin: 0;
+		line-height: var(--lh-snug);
+	}
+
+	.fk-footer__line--dim {
+		color: var(--c-text-dim);
+	}
+
+	.fk-footer__brandlink {
+		color: var(--c-pink);
+		text-decoration: none;
+		border-bottom: 2px solid var(--c-pink);
+		transition: color var(--t-fast) ease, text-shadow var(--t-fast) ease, border-color var(--t-fast) ease;
+	}
+
+	.fk-footer__brandlink:hover,
+	.fk-footer__brandlink:focus-visible {
+		color: var(--c-lime);
+		border-color: var(--c-lime);
+		text-shadow: var(--glow-lime);
+		outline: none;
+	}
+
+	.fk-footer__legallink {
+		color: var(--c-blue);
+		text-decoration: none;
+		transition: color var(--t-fast) ease, text-shadow var(--t-fast) ease;
+	}
+
+	.fk-footer__legallink:hover,
+	.fk-footer__legallink:focus-visible {
+		color: var(--c-lime);
+		text-shadow: var(--glow-lime);
+		outline: none;
+	}
+
+	.fk-footer__heart {
+		color: var(--c-pink);
+		text-shadow: var(--glow-pink);
+		display: inline-block;
+		animation: cursor-blink 1.2s steps(2) infinite;
+	}
+
+	.fk-footer__socials {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--sp-3);
+	}
+
+	.fk-footer__sociallink {
+		font-family: var(--f-display);
+		font-size: var(--fs-xs);
+		color: var(--c-blue);
+		text-decoration: none;
+		letter-spacing: 0.06em;
+		padding: var(--sp-2) var(--sp-3);
+		border: 2px solid var(--c-blue);
+		display: inline-block;
+		transition: all var(--t-fast) ease;
+	}
+
+	.fk-footer__sociallink:hover,
+	.fk-footer__sociallink:focus-visible {
+		color: var(--c-bg);
+		background: var(--c-blue);
+		text-shadow: none;
+		box-shadow: var(--glow-blue);
+		outline: none;
+	}
+
+	.fk-footer__signature {
+		margin-top: var(--sp-8);
 		text-align: center;
-		color: var(--gray-400);
-		font-size: var(--text-sm);
-	}
-
-	footer a {
-		color: var(--gray-400);
-		text-decoration: 1px solid underline transparent;
-		text-underline-offset: 0.25em;
-		transition: text-decoration-color var(--theme-transition);
-	}
-
-	footer a:hover,
-	footer a:focus {
-		text-decoration-color: currentColor;
-	}
-
-	.group {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-
-	.socials {
+		font-family: var(--f-display);
+		font-size: var(--fs-xs);
+		color: var(--c-text-muted);
+		letter-spacing: 0.1em;
 		display: flex;
 		justify-content: center;
-		gap: 1rem;
-		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--sp-3);
 	}
 
-	@media (min-width: 50em) {
-		footer {
+	.fk-footer__score {
+		color: var(--c-lime);
+		text-shadow: var(--glow-lime);
+	}
+
+	@media (min-width: 768px) {
+		.fk-footer__inner {
 			flex-direction: row;
 			justify-content: space-between;
-			padding: 2.5rem 5rem;
-		}
-
-		.group {
-			flex-direction: row;
-			gap: 1rem;
-			flex-wrap: wrap;
-		}
-
-		.socials {
-			justify-content: flex-end;
+			align-items: flex-start;
 		}
 	}
 </style>

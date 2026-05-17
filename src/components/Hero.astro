@@ -3,52 +3,54 @@ interface Props {
 	title: string;
 	tagline?: string;
 	align?: 'start' | 'center';
+	typeOn?: boolean;
 }
 
-const { align = 'center', tagline, title } = Astro.props;
+const { align = 'center', tagline, title, typeOn = false } = Astro.props;
 ---
 
-<header class:list={['hero stack gap-4', align]}>
-	<div class="stack gap-2">
-		<h1 class="title">{title}</h1>
-		{tagline && <p class="tagline">{tagline}</p>}
-	</div>
+<header class:list={['fk-hero', `fk-hero--${align}`]}>
+	<h1 class="fk-hero__title">
+		{typeOn ? <span class="type-on">{title}</span> : title}
+	</h1>
+	{tagline && <p class="fk-hero__tagline">{tagline}</p>}
 	<slot />
 </header>
 
 <style>
-	.hero {
-		font-size: var(--text-lg);
+	.fk-hero {
+		display: flex;
+		flex-direction: column;
+		gap: var(--sp-4);
+	}
+
+	.fk-hero--center {
+		align-items: center;
 		text-align: center;
 	}
 
-	.title,
-	.tagline {
-		max-width: 37ch;
-		margin-inline: auto;
+	.fk-hero--start {
+		align-items: flex-start;
+		text-align: left;
 	}
 
-	.title {
-		font-size: var(--text-3xl);
-		color: var(--gray-0);
+	.fk-hero__title {
+		font-family: var(--f-display);
+		font-size: clamp(var(--fs-2xl), 7vw, var(--fs-5xl));
+		color: var(--c-text);
+		text-shadow: var(--glow-pink);
+		letter-spacing: 0.04em;
+		line-height: var(--lh-tight);
+		max-width: 22ch;
+		margin: 0;
 	}
 
-	@media (min-width: 50em) {
-		.hero {
-			font-size: var(--text-xl);
-		}
-
-		.start {
-			text-align: start;
-		}
-
-		.start .title,
-		.start .tagline {
-			margin-inline: unset;
-		}
-
-		.title {
-			font-size: var(--text-5xl);
-		}
+	.fk-hero__tagline {
+		font-family: var(--f-body);
+		font-size: clamp(var(--fs-md), 2.2vw, var(--fs-lg));
+		line-height: var(--lh-loose);
+		color: var(--c-text);
+		max-width: 50ch;
+		margin: 0;
 	}
 </style>

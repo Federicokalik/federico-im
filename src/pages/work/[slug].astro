@@ -1,0 +1,218 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import Pill from '../../components/Pill.astro';
+
+interface Props {
+	entry: CollectionEntry<'work'>;
+	prev?: { slug: string; title: string } | null;
+	next?: { slug: string; title: string } | null;
+}
+
+export async function getStaticPaths() {
+	const slugOf = (e: any): string => (e?.slug ?? e?.id ?? '').toString().replace(/\.(md|mdx)$/i, '');
+	const work = (await getCollection('work')).sort(
+		(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+	);
+	return work.map((entry, i) => {
+		const prev = work[i - 1] ? { slug: slugOf(work[i - 1]), title: work[i - 1].data.title } : null;
+		const next = work[i + 1] ? { slug: slugOf(work[i + 1]), title: work[i + 1].data.title } : null;
+		return {
+			params: { slug: slugOf(entry) },
+			props: { entry, prev, next },
+		};
+	});
+}
+
+const { entry, prev, next } = Astro.props;
+const { Content } = await render(entry);
+const year = entry.data.publishDate.getFullYear();
+---
+
+<BaseLayout title={`${entry.data.title} — Federico.im`} description={entry.data.description}>
+	<section class="fk-work-hero wrapper">
+		<a class="fk-work-back nes-btn" href="/#powerups">
+			<span aria-hidden="true">&#9664;</span> BACK TO MENU
+		</a>
+		<p class="fk-work-hero__eyebrow">GAME MANUAL &middot; YEAR {year}</p>
+		<h1 class="fk-work-hero__title">{entry.data.title}</h1>
+		<div class="fk-work-hero__tags">
+			{entry.data.tags.map((t) => <Pill variant="blue">{t}</Pill>)}
+		</div>
+		<p class="fk-work-hero__desc">{entry.data.description}</p>
+	</section>
+
+	{entry.data.img && (
+		<section class="fk-work-cover wrapper">
+			<div class="nes-container is-dark is-pink with-title">
+				<p class="title">LEVEL PREVIEW</p>
+				<img src={entry.data.img} alt={entry.data.img_alt || entry.data.title} class="fk-work-cover__img" loading="eager" decoding="async" />
+			</div>
+		</section>
+	)}
+
+	<section class="fk-work-body wrapper">
+		<div class="nes-container is-dark with-title">
+			<p class="title">MANUAL</p>
+			<article class="fk-work-prose">
+				<Content />
+			</article>
+		</div>
+	</section>
+
+	<nav class="fk-work-nav wrapper" aria-label="Project pagination">
+		{prev ? (
+			<a class="nes-btn fk-work-nav__link" href={`/work/${prev.slug}`}>
+				<span aria-hidden="true">&#9664;</span> PREV LEVEL
+			</a>
+		) : <span></span>}
+		{next ? (
+			<a class="nes-btn is-primary fk-work-nav__link" href={`/work/${next.slug}`}>
+				NEXT LEVEL <span aria-hidden="true">&#9654;</span>
+			</a>
+		) : <span></span>}
+	</nav>
+
+	<ContactCTA />
+</BaseLayout>
+
+<style>
+	.fk-work-hero {
+		padding-block: var(--sp-12) var(--sp-8);
+		display: flex;
+		flex-direction: column;
+		gap: var(--sp-3);
+		align-items: flex-start;
+	}
+
+	.fk-work-back {
+		font-size: var(--fs-xs);
+		padding: 6px 14px;
+		min-height: 36px;
+		text-decoration: none;
+		margin-bottom: var(--sp-3);
+	}
+
+	.fk-work-hero__eyebrow {
+		font-family: var(--f-display);
+		font-size: var(--fs-xs);
+		color: var(--c-blue);
+		letter-spacing: 0.1em;
+	}
+
+	.fk-work-hero__title {
+		font-family: var(--f-display);
+		font-size: clamp(var(--fs-xl), 5vw, var(--fs-3xl));
+		color: var(--c-pink);
+		text-shadow: var(--glow-pink);
+		letter-spacing: 0.04em;
+		line-height: var(--lh-tight);
+		margin: 0;
+		text-transform: uppercase;
+	}
+
+	.fk-work-hero__tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--sp-2);
+		margin-top: var(--sp-2);
+	}
+
+	.fk-work-hero__desc {
+		font-family: var(--f-body);
+		font-size: var(--fs-md);
+		color: var(--c-text);
+		max-width: 60ch;
+		margin-top: var(--sp-3);
+		line-height: var(--lh-loose);
+	}
+
+	.fk-work-cover {
+		padding-block: var(--sp-6);
+	}
+
+	.fk-work-cover__img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border: 4px solid var(--c-text);
+	}
+
+	.fk-work-body {
+		padding-block: var(--sp-6) var(--sp-10);
+	}
+
+	.fk-work-prose {
+		font-family: var(--f-body);
+		font-size: var(--fs-base);
+		color: var(--c-text);
+		line-height: var(--lh-loose);
+		max-width: 72ch;
+		margin: 0 auto;
+	}
+
+	.fk-work-prose :global(p) {
+		margin-bottom: var(--sp-4);
+		color: var(--c-text);
+		font-size: var(--fs-base);
+		line-height: var(--lh-loose);
+	}
+
+	.fk-work-prose :global(h2),
+	.fk-work-prose :global(h3),
+	.fk-work-prose :global(h4) {
+		font-family: var(--f-display);
+		color: var(--c-blue);
+		text-shadow: var(--glow-blue);
+		letter-spacing: 0.04em;
+		margin-block: var(--sp-8) var(--sp-3);
+		line-height: var(--lh-snug);
+	}
+
+	.fk-work-prose :global(h2) { font-size: var(--fs-lg); }
+	.fk-work-prose :global(h3) { font-size: var(--fs-md); }
+	.fk-work-prose :global(h4) { font-size: var(--fs-base); }
+
+	.fk-work-prose :global(a) {
+		color: var(--c-pink);
+		text-decoration: underline;
+		text-underline-offset: 4px;
+	}
+	.fk-work-prose :global(a:hover) {
+		color: var(--c-lime);
+	}
+
+	.fk-work-prose :global(img),
+	.fk-work-prose :global(video) {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+		border: 4px solid var(--c-text);
+		box-shadow: 6px 6px 0 0 var(--c-pink);
+		margin-block: var(--sp-6);
+	}
+
+	.fk-work-prose :global(blockquote) {
+		border-left: 4px solid var(--c-lime);
+		padding-left: var(--sp-4);
+		color: var(--c-lime);
+		font-family: var(--f-body);
+		font-size: var(--fs-md);
+		margin-block: var(--sp-4);
+	}
+
+	.fk-work-nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: var(--sp-4);
+		padding-block: var(--sp-8);
+	}
+
+	.fk-work-nav__link {
+		text-decoration: none;
+	}
+</style>

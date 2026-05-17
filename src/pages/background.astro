@@ -1,165 +1,301 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
 import ContactCTA from '../components/ContactCTA.astro';
-import Hero from '../components/Hero.astro';
-import Pill from '../components/Pill.astro';
+
+// Build-time fallback values. Live values are computed client-side via
+// data-fk-counter and the script in BaseLayout (so they stay current
+// without a rebuild).
+const startYear = 2016;
+const currentYear = new Date().getFullYear();
+const level = currentYear - startYear;
+
+const stats = [
+	{ label: 'YEARS OF XP',    value: `${level}`, counter: 'years-since-2016' as const },
+	{ label: 'PROJECTS DONE',  value: '50+',      counter: null },
+	{ label: 'CLIENTS HELPED', value: '30+',      counter: null },
+	{ label: 'COFFEES',        value: '999+',     counter: null },
+];
+
+const skills = [
+	{ name: 'WORDPRESS',         value: 95, variant: 'is-primary' },
+	{ name: 'ASTRO',             value: 88, variant: 'is-success' },
+	{ name: 'REACT + TYPESCRIPT',value: 80, variant: 'is-blue'    },
+	{ name: 'TAILWIND CSS',      value: 90, variant: 'is-primary' },
+	{ name: 'GSAP / ANIMATION',  value: 75, variant: 'is-success' },
+	{ name: 'SEO + CORE WEB VITALS', value: 88, variant: 'is-warning' },
+	{ name: 'AI WORKFLOW (CLAUDE/GPT)', value: 85, variant: 'is-blue' },
+	{ name: 'DIGITAL MARKETING', value: 90, variant: 'is-primary' },
+];
+
+const quests = [
+	{
+		date: '07/2021 — PRESENTE',
+		title: 'WEB DESIGNER &amp; DEVELOPER &mdash; CALICCHIA DESIGN',
+		desc: 'Freelance full-stack: web design, e-commerce, applicazioni custom, SEO &amp; Core Web Vitals, manutenzione e accessibilit&agrave; WCAG. Stack WordPress + Astro/React/Next.js, workflow AI-augmented (Claude/GPT/Gemini). Un solo punto di contatto per tutto il ciclo del progetto.',
+		active: true,
+	},
+	{
+		date: '07/2023 — PRESENTE',
+		title: 'WEB MASTER &amp; SHOP MANAGER &mdash; CREATTIVAMENTE',
+		desc: 'Gestione sito web ed e-commerce.',
+		active: true,
+	},
+	{
+		date: '10/2019 — 06/2022',
+		title: 'CO-FOUNDER / MARKETING MANAGER &mdash; AERON SIM',
+		desc: 'Gestione sito web, e-commerce, SEO e campagne pubblicitarie.',
+	},
+	{
+		date: '07/2021 — 10/2021',
+		title: 'DOCENTE &mdash; EDISON SCHOOL',
+		desc: 'Insegnamento sulla realizzazione di siti web ed e-commerce basati su WordPress e WooCommerce.',
+	},
+	{
+		date: '10/2019 — 04/2020',
+		title: 'WEB &amp; GRAPHIC DESIGNER &mdash; DAG STUDIO',
+		desc: 'Sviluppo e gestione siti web, editing video, progettazione logotipi.',
+	},
+	{
+		date: '07/2019 — 12/2019',
+		title: 'SOCIAL MEDIA MANAGER &mdash; RBR-WORLD',
+		desc: 'Gestione dei social media, creazione e pubblicazione dei post, copywriting e gestione delle news.',
+	},
+	{
+		date: '05/2018 — 03/2019',
+		title: 'GRAFICO PUBBLICITARIO &mdash; MONKEY MARKETING',
+		desc: 'Sviluppo e gestione siti web, editing video (base), impaginazioni brochure e flyer, progettazione logotipi.',
+	},
+	{
+		date: '06/2017 — 04/2018',
+		title: 'WEB &amp; GRAPHIC DESIGNER &mdash; MBM BILIARDI',
+		desc: 'Sviluppo e gestione siti web, gestione ordini e-commerce, editing video (base), renderizzazione scene 3D, impaginazione cataloghi, progettazione logotipi.',
+	},
+	{
+		date: '10/2016 — 03/2017',
+		title: 'GRAFICO PUBBLICITARIO &mdash; MONKEY MARKETING',
+		desc: 'Sviluppo e gestione siti web, impaginazioni brochure e flyer, progettazione logotipi.',
+	},
+];
+
+const education = [
+	{
+		year: '2019',
+		title: 'CERTIFICAZIONE "MARKETING DIGITALE" &mdash; GOOGLE',
+		desc: 'Analisi e approfondimenti sui dati, strategia commerciale, social media marketing, content marketing, pubblicità display, marketing via mail e locale, SEO e SEM.',
+	},
+	{
+		year: '2015',
+		title: 'CORSO "GRAPHIC &amp; WEB DESIGNER" &mdash; ASSOCIAZIONE IL FARO',
+		desc: 'Ideazione grafica prodotto multimediale, progettazione tecnica e sviluppo layout grafico del prodotto multimediale.',
+	},
+	{
+		year: '2010 — 2015',
+		title: 'DIPLOMA "COSTRUZIONI, AMBIENTE E TERRITORIO" &mdash; I.I.S. F. BRUNELLESCHI / L. DA VINCI',
+		desc: 'Inglese, matematica, fisica, chimica, ecologia, diritto ed economia. Topografia, estimo, disegno tecnico, AutoCAD, sicurezza in cantiere.',
+	},
+];
 ---
 
-<BaseLayout title="Curriculum Vitae | Federico Calicchia" description="Esperienze Lavorative ">
-	<div class="stack gap-20">
-		<main class="wrapper about" style="padding-top: 50px;">
-			<Hero
-				title="Background"
-			>
-			</Hero>
-			<section>
-				<h2 class="section-title">Federico Calicchia, in breve (più o meno)</h2>
-				<div class="content" style="text-align: justify;">
-					<p>Ciao, sono Federico Calicchia e sono un Web designer da oltre 6 anni, esperto del CMS WordPress (anche se questo sito è realizzato con <a href="https://astro.build/">Astro</a>)</p>
-					<p>Appassionato di grafica sin da bambino inizio a “giocare” con programmi CAD e di fotoritocco.</p>
-					<p>Passione che inizialmente mi porta a prendere il diploma da Geometra, ma che nel tempo si è avvicinata sempre più al mondo del Web, infatti non appena terminati gli studi ho seguito alcuni corsi di formazione in ambito web design ed ho iniziato a svolgere un tirocinio presso la Monkey Marketing una web agency.</p>
-					<p>Successivamente ho lavorato come responsabile Grafico per un anno all’ MBM Biliardi, una nota fabbrica di biliardi, dove sono riuscito ad unire gli studi precedenti con il web design (Render 3D interattivi) e mi avvicinai al mondo del Video Editing e della Post Produzione Audio, Foto e Video.</p>
-					<p>A maggio 2018 tornai a lavorare nella web agency Monkey Marketing dove ho ampliando le mie conoscenze sulla User Interface, sul Digital Marketing e sul mondo del Motion Graphics.</p>
-					<p>Nel 2019 ho dedicato la maggior parte del tempo alla formazione, ho ottenuto la Certificazione Google nel digital marketing e mi sono affacciato al mondo della programmazione web, iniziando a studiare JavaSript e php, ed anche a quello del Modding Android a livello di sistema e reverse-engineering delle app, sul finire del 2019 incominciato a lavorare per la DAG STUDIO, web agency nella quale sono stato fino ad inizio Aprile 2020 e mi occupavo della realizzazione di Siti Web, e-commerce, realizzazione di grafiche varie e Video Editing.</p>
-					<p>In contemporanea nel 2019 sono entrato a far parte dell' Aeron Sim, una azienda che si occupa di simulatori di guida ed allenamento piloti, ricoprendo i ruoli di Web Master, Marketing manager, nella quale a gennaio 2021 divenni socio co-fondatore (Possiedo solo quote socetarie ora, ma non svolgo più alcun ruolo)</p>
-					<p>Ad oggi lavoro come <a href="http://calicchia.design">Freelancer</a>, mi occupo di realizzare siti web ed e-commerce per piccole attività o per conto di altre Web Ageny e lavoro part-time per la Sewing Store (un rivenditore Singer) dove mi occupo della gestione del sito web e dello shop online.</p>
-				</div>
-			</section>
-			<section>
-				<h2 class="section-title">Esperienze Lavorative</h2>
-				<div class="content">
-				<div class="stack gap-2 top-20">
-					<Pill>07/2021 - Presente</Pill>
-					<h5>Web Designer - Calicchia Design</h5>
-					<p>Consulenze Digital Marketing, realizzazione di siti web ed e-commerce</p>
-					<hr class="hr-50">
-				</div>
-				<div class="stack gap-2 top-20">
-					<Pill>07/2023 - Presente</Pill>
-					<h5>Web Master & Shop Manager - Sewing Store (Singer)</h5>
-					<p>Gestione sito web ed e-commerce</p>
-					<hr class="hr-50">
-				</div>	
-				<div class="stack gap-2 top-20">
-					<Pill>10/2019 - 06/2022</Pill>
-					<h5>Co-Founder/Marketing Manager - Aeron Sim</h5>
-					<p>Gestione sito web, e-commerce, SEO e campagne pubblicitarie.</p>
-					<hr class="hr-50">
-				</div>
-				<div class="stack gap-2 top-20">
-					<Pill>07/2021 - 10/2021</Pill>
-					<h5>Docente - Edison School</h5>
-					<p>Insegnamento sulla realizzazione di siti web ed e-commerce basati su Wordpress e Woocmmerce.</p>
-					<hr class="hr-50">
-				</div>	
-				<div class="stack gap-2 top-20">
-					<Pill>10/2019 - 04/2020</Pill>
-					<h5>Web & Graphic Designer - Dag Studio</h5>
-					<p>Sviluppo e gestione siti web, editing video, progettazione logotipi.</p>
-					<hr class="hr-50">
-				</div>	
-				<div class="stack gap-2 top-20">
-					<Pill>07/2019 - 12/2019</Pill>
-					<h5>Social Media Manager - RBR-WORLD</h5>
-					<p>Gestione dei social media, creazione e pubblicazione dei post, copywriting e gestione delle news.</p>
-					<hr class="hr-50">
-				</div>	
-				<div class="stack gap-2 top-20">
-					<Pill>05/2018 - 03/2019</Pill>
-					<h5>Grafico Pubblicitario - Monkey Marketing</h5>
-					<p>Sviluppo e gestione siti web, editing video (base), impaginazioni brochure e flyer, progettazione logotipi.</p>
-					<hr class="hr-50">
-				</div>	
-				<div class="stack gap-2 top-20">
-					<Pill>06/2017 - 04/2018</Pill>
-					<h5>Web & Graphic Designer - MBM Biliardi</h5>
-					<p>Sviluppo e gestione siti web, gestione ordini e-commerce, editing video (base), renderizzazione scene 3D, impaginazione cataloghi, progettazione logotipi.</p>
-					<hr class="hr-50">
-				</div>	
-				<div class="stack gap-2 top-20">
-					<Pill>10/2016 - 03/2017</Pill>
-					<h5>Grafico Pubblicitario - Monkey Marketing</h5>
-					<p>Sviluppo e gestione siti web, impaginazioni brochure e flyer, progettazione logotipi.</p>
-				</div>		
-				</div>
-			</section>
-			<section>
-				<h2 class="section-title">Formazione</h2>
-				<div class="content">
-					<div class="stack gap-2 top-20">
-						<Pill>2019</Pill>
-						<h5>Certificazione in "Marketing Digitale" - GOOGLE</h5>
-						<p>Analisi e approfondimenti sui dati, strategia commerciale, social media marketing, content marketing, pubblicità display, marketing via mail e locale, SEO e SEM.</p>
-						<hr class="hr-50">
-					</div>	
-					<div class="stack gap-2 top-20">
-						<Pill>2015</Pill>
-						<h5>Corso di formazione : “GRAPHIC & WEB DESIGNER” - ASSOCIAZIONE IL FARO</h5>
-						<p>Ideazione grafica prodotto multimediale, progettazione tecnica componenti grafiche del prodotto multimediale e sviluppo layout grafico del prodotto multimediale.</p>
-						<hr class="hr-50">
-					</div>	
-					<div class="stack gap-2 top-20">
-						<Pill>2010 - 2015</Pill>
-						<h5>Diploma di “COSTRUZIONI, AMBIENTE E TERRITORIO” - ISTITUTO DI ISTRUZIONE “F. Brunelleschi – L. Da Vinci"</h5>
-						<p>Inglese, italiano, storia, matematica, ed fisica, fisica, chimica, scienze, ecologia, diritto ed economia. Topografia, estimo, disegno tecnico, disegno in AutoCAD, sicurezza in cantiere.</p>
-					</div>	
-				</div>
-			</section>
-		</main>
+<BaseLayout title="Background — Federico.im" description="Curriculum vitae e formazione di Federico Calicchia, Web Designer.">
+	<section class="fk-bg-hero wrapper">
+		<p class="fk-bg-hero__eyebrow">CHARACTER PROFILE</p>
+		<h1 class="fk-bg-hero__title">BACKGROUND</h1>
+		<p class="fk-bg-hero__sub">Stats, skill bars, quest completate ed education unlocked.</p>
+	</section>
 
-		<ContactCTA />
-	</div>
+	<section class="wrapper fk-bg-section">
+		<div class="char-sheet">
+			<aside class="avatar-card">
+				<div class="portrait-frame">
+					<img class="portrait-sprite" src="/assets/portrait.jpg" alt="Federico Calicchia" width="200" height="250" loading="lazy" decoding="async" />
+				</div>
+				<h2 class="avatar-card__name">FEDERICO<br />CALICCHIA</h2>
+				<p class="avatar-card__class">CLASS: WEB DESIGNER</p>
+				<p class="avatar-card__level" data-fk-counter="level-since-2016">LV {String(level).padStart(2, '0')}</p>
+				<p class="avatar-card__class glow-lime">P1</p>
+			</aside>
+
+			<div class="char-sheet__main">
+				<div class="stat-grid">
+					{stats.map((s) => (
+						<div class="stat-card">
+							<span class="stat-card__label">{s.label}</span>
+							<span class="stat-card__value" data-fk-counter={s.counter ?? undefined}>{s.value}</span>
+						</div>
+					))}
+				</div>
+
+				<div class="nes-container is-dark is-blue with-title" style="margin-top: var(--sp-6)">
+					<p class="title">ABOUT &mdash; OGGI</p>
+					<div class="fk-bg-about">
+						<p><strong>Web Designer &amp; Developer freelance</strong>. Lavoro da solo (con qualche partner fidato quando serve) e mi occupo di tutto: design, codice, SEO, performance, accessibilit&agrave;, deploy, manutenzione. Niente coordinamento tra designer, sviluppatore e consulente SEO &mdash; parli con me, capisco cosa ti serve, faccio.</p>
+						<p>I quattro servizi principali che propongo su <a href="https://calicchia.design">calicchia.design</a>:</p>
+						<ul class="fk-bg-list">
+							<li><strong>Web Design</strong> &mdash; siti su misura (no template), SEO tecnica gi&agrave; configurata, GDPR/cookie a posto, un anno di assistenza inclusa.</li>
+							<li><strong>E-Commerce</strong> &mdash; store che convertono, gestibili senza un team IT. Stripe + PayPal, magazzino sincronizzato, email transazionali curate.</li>
+							<li><strong>Sviluppo Web</strong> &mdash; applicazioni custom, API, gestionali, aree riservate, integrazioni. Quando il sito vetrina non basta.</li>
+							<li><strong>SEO &amp; Visibilit&agrave;</strong> &mdash; audit tecnico, strategia keyword, Local SEO (Google Business), monitoring mensile. Niente trucchi.</li>
+						</ul>
+						<p>Anche servizi standalone: <strong>manutenzione siti</strong>, <strong>assistenza WordPress</strong> (security hardening, malware cleanup, conflitti plugin), <strong>migrazione zero-downtime</strong>, <strong>Performance / Core Web Vitals</strong>, <strong>Accessibilit&agrave; WCAG 2.1 AA</strong> (European Accessibility Act in vigore dal 28 giugno 2025), <strong>Analytics &amp; Tag Manager</strong>.</p>
+						<p><strong>Lo stack che uso ogni giorno.</strong> WordPress quando il cliente deve gestire i contenuti in autonomia. <strong>Astro / React / Next.js + TypeScript + Tailwind + GSAP</strong> quando performance e Core Web Vitals devono volare. Workflow AI-augmented con <strong>Claude, GPT, Gemini, Perplexity</strong> per moltiplicare la velocit&agrave; senza sacrificare la qualit&agrave;.</p>
+						<p><strong>Commitment fissi.</strong> Web Master ed e-Shop Manager di <strong>Creattivamente</strong> dal 2023. Lancio nel 2026 di <a href="https://calicchia.design">calicchia.design</a>, la mia base operativa, costruita sulla piattaforma monorepo open-source <a href="https://github.com/Federicokalik/calicchia-design-platform">Caldes 2026</a>.</p>
+					</div>
+				</div>
+
+				<div class="nes-container is-dark is-violet with-title" style="margin-top: var(--sp-6)">
+					<p class="title">ABOUT &mdash; STORIA</p>
+					<div class="fk-bg-about">
+						<p>Appassionato di grafica sin da bambino, inizio a "giocare" con programmi CAD e di fotoritocco.</p>
+						<p>Passione che inizialmente mi porta a prendere il <strong>diploma da Geometra</strong>, ma che nel tempo si &egrave; avvicinata sempre pi&ugrave; al mondo del Web. Appena terminati gli studi seguo alcuni corsi di formazione in web design e inizio un tirocinio presso la <strong>Monkey Marketing</strong>, una web agency.</p>
+						<p>Successivamente lavoro come responsabile Grafico per un anno all'<strong>MBM Biliardi</strong>, una nota fabbrica di biliardi, dove riesco a unire gli studi precedenti con il web design (render 3D interattivi) e mi avvicino al mondo del Video Editing e della Post Produzione Audio, Foto e Video.</p>
+						<p>A maggio 2018 torno alla Monkey Marketing dove amplio le mie conoscenze su User Interface, Digital Marketing e Motion Graphics.</p>
+						<p>Nel 2019 dedico la maggior parte del tempo alla formazione: ottengo la <strong>Certificazione Google nel Digital Marketing</strong> e mi affaccio al mondo della programmazione web, iniziando a studiare JavaScript e PHP. Sul finire del 2019 comincio a lavorare per <strong>DAG Studio</strong>, web agency dove resto fino ad aprile 2020, occupandomi di siti web, e-commerce, grafica e video editing.</p>
+						<p>Sempre nel 2019 entro in <strong>Aeron Sim</strong>, azienda di simulatori di guida ed allenamento piloti, ricoprendo i ruoli di Web Master e Marketing Manager. A gennaio 2021 divento socio co-fondatore (oggi possiedo solo quote societarie, non svolgo pi&ugrave; alcun ruolo operativo).</p>
+						<p>Da luglio 2021 lavoro come <a href="https://calicchia.design">freelancer</a> a tempo pieno e da luglio 2023 affianco l'attivit&agrave; part-time alla <strong>Creattivamente</strong>.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="wrapper fk-bg-section">
+		<h2 class="fk-bg-section__title">SKILL TREE</h2>
+		<div class="nes-container is-dark is-violet with-title">
+			<p class="title">EQUIPPED SKILLS</p>
+			<div class="fk-skills">
+				{skills.map((s) => (
+					<div class="skill-row">
+						<div class="skill-row__head">
+							<span>{s.name}</span>
+							<span class="skill-row__value">{s.value}%</span>
+						</div>
+						<progress class={`nes-progress ${s.variant}`} value={s.value} max="100" aria-label={s.name + ' skill'}></progress>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="wrapper fk-bg-section">
+		<h2 class="fk-bg-section__title">QUEST LOG &mdash; ESPERIENZE</h2>
+		<ol class="quest-list" role="list">
+			{quests.map((q) => (
+				<li class="quest">
+					<span class={`quest__status ${q.active ? 'is-active' : ''}`}>
+						{q.active ? '◆ IN PROGRESS' : '✓ COMPLETED'}
+					</span>
+					<span class="quest__date">{q.date}</span>
+					<h3 class="quest__title" set:html={q.title}></h3>
+					<p class="quest__desc" set:html={q.desc}></p>
+				</li>
+			))}
+		</ol>
+	</section>
+
+	<section class="wrapper fk-bg-section">
+		<h2 class="fk-bg-section__title">EDUCATION UNLOCKED</h2>
+		<ol class="quest-list" role="list">
+			{education.map((e) => (
+				<li class="quest">
+					<span class="quest__status">{'✓ UNLOCKED'}</span>
+					<span class="quest__date">{e.year}</span>
+					<h3 class="quest__title" set:html={e.title}></h3>
+					<p class="quest__desc" set:html={e.desc}></p>
+				</li>
+			))}
+		</ol>
+	</section>
+
+	<ContactCTA />
 </BaseLayout>
 
 <style>
-	.about {
+	.fk-bg-hero {
+		padding-block: var(--sp-16) var(--sp-8);
+		text-align: center;
+	}
+
+	.fk-bg-hero__eyebrow {
+		font-family: var(--f-display);
+		font-size: var(--fs-xs);
+		color: var(--c-blue);
+		letter-spacing: 0.1em;
+		margin-bottom: var(--sp-3);
+	}
+
+	.fk-bg-hero__title {
+		font-family: var(--f-display);
+		font-size: clamp(var(--fs-3xl), 8vw, var(--fs-5xl));
+		color: var(--c-pink);
+		text-shadow: var(--glow-pink);
+		letter-spacing: 0.04em;
+		margin: 0 0 var(--sp-4) 0;
+	}
+
+	.fk-bg-hero__sub {
+		font-family: var(--f-body);
+		font-size: var(--fs-md);
+		color: var(--c-text-dim);
+		max-width: 56ch;
+		margin-inline: auto;
+	}
+
+	.fk-bg-section {
+		padding-block: var(--sp-8);
+	}
+
+	.fk-bg-section__title {
+		font-family: var(--f-display);
+		font-size: clamp(var(--fs-lg), 3vw, var(--fs-2xl));
+		color: var(--c-lime);
+		text-shadow: var(--glow-lime);
+		letter-spacing: 0.06em;
+		margin-bottom: var(--sp-6);
+	}
+
+	.fk-bg-about p {
+		margin-bottom: var(--sp-3);
+		color: var(--c-text);
+		font-size: var(--fs-base);
+		line-height: var(--lh-loose);
+	}
+
+	.fk-bg-about p:last-child {
+		margin-bottom: 0;
+	}
+
+	.fk-bg-about strong {
+		color: var(--c-pink);
+		font-weight: 400;
+		text-shadow: var(--glow-pink);
+	}
+
+	.fk-bg-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 var(--sp-4) 0;
 		display: flex;
 		flex-direction: column;
-		gap: 3.5rem;
+		gap: var(--sp-3);
 	}
 
-	section {
+	.fk-bg-list li {
+		padding: var(--sp-3);
+		border-left: 4px solid var(--c-lime);
+		background: var(--c-surface);
+		font-size: var(--fs-base);
+		line-height: var(--lh-loose);
+		color: var(--c-text);
+	}
+
+	.fk-bg-list li strong {
+		color: var(--c-lime);
+		text-shadow: var(--glow-lime);
+	}
+
+	.fk-skills {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
-		color: var(--gray-200);;
-	}
-
-	.section-title {
-		grid-column-start: 1;
-		font-size: var(--text-xl);
-		color: var(--gray-0);
-	}
-
-	.content {
-		grid-column: 2 / 4;
-	}
-
-	.content :global(a) {
-		text-decoration: 1px solid underline transparent;
-		text-underline-offset: 0.25em;
-		transition: text-decoration-color var(--theme-transition);
-	}
-
-	.content :global(a:hover),
-	.content :global(a:focus) {
-		text-decoration-color: currentColor;
-	}
- main {padding-top: 100px;}
-	@media (min-width: 50em) {
-		.about {
-			display: grid;
-			grid-template-columns: 1fr 60% 1fr;
-		}
-
-		.about > :global(:first-child) {
-			grid-column-start: 2;
-		}
-
-		section {
-			display: contents;
-			font-size: var(--text-lg);
-		}
+		gap: var(--sp-2);
 	}
 </style>

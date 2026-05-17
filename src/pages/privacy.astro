@@ -1,0 +1,394 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lastUpdate = '17 maggio 2026';
+---
+
+<BaseLayout
+	title="Privacy & Accessibility — Federico.im"
+	description="Privacy policy, cookie policy e dichiarazione di accessibilità di federico.im."
+>
+	<section class="fk-priv-hero wrapper">
+		<p class="fk-priv-hero__eyebrow">LEGAL TERMINAL</p>
+		<h1 class="fk-priv-hero__title">PRIVACY</h1>
+		<p class="fk-priv-hero__sub">
+			Privacy policy, cookie notice e accessibility statement &mdash; tutto in una pagina,
+			tutto in chiaro. Ultimo aggiornamento: <strong>{lastUpdate}</strong>.
+		</p>
+	</section>
+
+	<div class="wrapper fk-priv">
+		<aside class="fk-priv__toc nes-container is-dark is-blue with-title">
+			<p class="title">INDEX</p>
+			<ol class="fk-priv__toclist">
+				<li><a href="#titolare">01 &middot; Titolare del trattamento</a></li>
+				<li><a href="#dati">02 &middot; Dati raccolti</a></li>
+				<li><a href="#cookie">03 &middot; Cookie &amp; storage</a></li>
+				<li><a href="#finalita">04 &middot; Finalit&agrave; e basi giuridiche</a></li>
+				<li><a href="#terzi">05 &middot; Condivisione con terzi</a></li>
+				<li><a href="#diritti">06 &middot; Diritti dell&apos;interessato</a></li>
+				<li><a href="#sicurezza">07 &middot; Sicurezza e ritenzione</a></li>
+				<li><a href="#accessibility">08 &middot; Accessibility statement</a></li>
+				<li><a href="#contatti">09 &middot; Contatti</a></li>
+			</ol>
+		</aside>
+
+		<article class="fk-priv__body">
+
+			<section id="titolare" class="nes-container is-dark with-title fk-priv__sec">
+				<p class="title">01 / TITOLARE</p>
+				<p><strong>Federico Calicchia</strong> (in seguito "Titolare") &mdash; ditta individuale operante con il brand <a href="https://calicchia.design">Calicchia Design</a>.</p>
+				<ul class="fk-priv__list">
+					<li><strong>P. IVA:</strong> 03160480608</li>
+					<li><strong>Sede:</strong> Provincia di Frosinone, Italia</li>
+					<li><strong>Email:</strong> <a href="mailto:mail@federico.im">mail@federico.im</a></li>
+				</ul>
+				<p class="fk-priv__note">Non &egrave; nominato un DPO (Data Protection Officer): non sussistono le condizioni di obbligatoriet&agrave; previste dall&apos;Art. 37 GDPR.</p>
+			</section>
+
+			<section id="dati" class="nes-container is-dark is-pink with-title fk-priv__sec">
+				<p class="title">02 / DATI RACCOLTI</p>
+
+				<h3 class="fk-priv__h3">Direttamente da te</h3>
+				<p>Il sito <strong>non contiene form, account, registrazioni, newsletter</strong>. Nessun dato viene raccolto automaticamente per il fatto stesso di visitarlo.</p>
+				<p>L&apos;unico canale di contatto presente &egrave; il link <code>mailto:mail@federico.im</code>: se decidi di scrivermi, ricever&ograve; nome (se presente), indirizzo email e contenuto del messaggio. Sei tu a decidere cosa inviare.</p>
+
+				<h3 class="fk-priv__h3">Automaticamente (server logs)</h3>
+				<p>Il server che ospita il sito registra, per ogni richiesta, dati tecnici minimi:</p>
+				<ul class="fk-priv__list">
+					<li>Indirizzo IP (parzialmente anonimizzato dove tecnicamente possibile)</li>
+					<li>Data e ora della richiesta</li>
+					<li>User agent (browser e sistema operativo)</li>
+					<li>URL richiesto e codice di risposta HTTP</li>
+					<li>Referer (pagina di provenienza, se trasmessa)</li>
+				</ul>
+				<p>Questi log servono per <strong>sicurezza, troubleshooting e statistiche aggregate</strong>. Non sono usati per profilazione n&eacute; per identificare singole persone.</p>
+			</section>
+
+			<section id="cookie" class="nes-container is-dark is-lime with-title fk-priv__sec">
+				<p class="title">03 / COOKIE &amp; STORAGE</p>
+
+				<p class="fk-priv__bigclaim">Questo sito <strong>non usa cookie</strong>.</p>
+				<p>Zero cookie di sessione, zero cookie persistenti, zero cookie di terze parti. Nessun banner di consenso &egrave; necessario.</p>
+
+				<h3 class="fk-priv__h3">Cosa NON usiamo</h3>
+				<ul class="fk-priv__list">
+					<li>Google Analytics, Google Tag Manager, GA4</li>
+					<li>Meta/Facebook Pixel, TikTok Pixel, LinkedIn Insight</li>
+					<li>Hotjar, Mouseflow, FullStory, Clarity</li>
+					<li>Plausible, Umami, Fathom, Matomo, Posthog</li>
+					<li>Sentry, Bugsink, Datadog, NewRelic (error tracking client-side)</li>
+					<li>Google Fonts via CDN esterno (i font sono <strong>self-hosted</strong>)</li>
+					<li>Iframe di YouTube, Vimeo, Twitter/X, Facebook, Instagram</li>
+				</ul>
+
+				<h3 class="fk-priv__h3">Cosa usiamo (Web Storage funzionale)</h3>
+				<p>Il sito usa <code>localStorage</code> e <code>sessionStorage</code> del browser per <strong>tre sole preferenze utente</strong>, salvate solo sul tuo dispositivo:</p>
+				<ul class="fk-priv__list">
+					<li><code>fk-audio</code> &mdash; ricorda se hai attivato i beep audio (default: OFF)</li>
+					<li><code>fk-boot-seen</code> &mdash; flag di sessione: evita di ri-mostrare la boot screen ad ogni navigazione</li>
+				</ul>
+				<p>Sono dati funzionali strettamente necessari a rispettare le tue scelte UX. Non vengono mai trasmessi al server, non identificano nessuno e li puoi cancellare in qualsiasi momento dalle impostazioni del browser.</p>
+			</section>
+
+			<section id="finalita" class="nes-container is-dark is-violet with-title fk-priv__sec">
+				<p class="title">04 / FINALIT&Agrave; &amp; BASI GIURIDICHE</p>
+				<ul class="fk-priv__list">
+					<li><strong>Server log</strong> &mdash; finalit&agrave;: sicurezza, anti-abuso, troubleshooting, statistiche aggregate. <em>Base giuridica:</em> legittimo interesse del Titolare (Art. 6.1.f GDPR).</li>
+					<li><strong>Email ricevute via mailto</strong> &mdash; finalit&agrave;: rispondere alla tua richiesta. <em>Base giuridica:</em> esecuzione di misure precontrattuali / consenso implicito (Art. 6.1.b GDPR).</li>
+					<li><strong>localStorage UX</strong> &mdash; finalit&agrave;: erogare il servizio richiesto rispettando le tue preferenze. <em>Base giuridica:</em> interesse legittimo / strettamente necessario.</li>
+				</ul>
+			</section>
+
+			<section id="terzi" class="nes-container is-dark is-blue with-title fk-priv__sec">
+				<p class="title">05 / CONDIVISIONE TERZI</p>
+				<p>I tuoi dati <strong>non vengono venduti, ceduti o condivisi a terze parti per finalit&agrave; commerciali o di profilazione</strong>.</p>
+				<p>Gli unici soggetti che inevitabilmente trattano dati per conto del Titolare:</p>
+				<ul class="fk-priv__list">
+					<li><strong>Provider hosting</strong> &mdash; conserva fisicamente i log del server. Nominato come responsabile del trattamento ex Art. 28 GDPR.</li>
+					<li><strong>Provider email</strong> &mdash; quando rispondo alle email, il messaggio passa attraverso il mio provider di posta.</li>
+				</ul>
+				<p>I dati restano nello <strong>Spazio Economico Europeo (SEE)</strong>. Nessun trasferimento verso paesi extra-UE.</p>
+			</section>
+
+			<section id="diritti" class="nes-container is-dark is-pink with-title fk-priv__sec">
+				<p class="title">06 / I TUOI DIRITTI</p>
+				<p>In qualsiasi momento puoi esercitare i diritti previsti dagli artt. 15-22 GDPR:</p>
+				<ul class="fk-priv__list">
+					<li><strong>Accesso</strong> &mdash; sapere se sto trattando tuoi dati e ricevere copia</li>
+					<li><strong>Rettifica</strong> &mdash; correggere dati inesatti o incompleti</li>
+					<li><strong>Cancellazione</strong> ("diritto all&apos;oblio") &mdash; chiedere di rimuovere i tuoi dati</li>
+					<li><strong>Limitazione</strong> &mdash; chiedere di sospendere temporaneamente il trattamento</li>
+					<li><strong>Opposizione</strong> &mdash; opporti al trattamento basato su legittimo interesse</li>
+					<li><strong>Portabilit&agrave;</strong> &mdash; ricevere i tuoi dati in formato strutturato e machine-readable</li>
+				</ul>
+				<p>Scrivimi a <a href="mailto:mail@federico.im">mail@federico.im</a>. Rispondo entro 30 giorni (di solito molto prima).</p>
+				<p>Hai inoltre diritto di proporre reclamo al <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">Garante per la Protezione dei Dati Personali</a>.</p>
+			</section>
+
+			<section id="sicurezza" class="nes-container is-dark is-lime with-title fk-priv__sec">
+				<p class="title">07 / SICUREZZA &amp; RITENZIONE</p>
+				<ul class="fk-priv__list">
+					<li><strong>Trasmissione</strong> &mdash; HTTPS obbligatorio (TLS 1.2+) per tutte le pagine</li>
+					<li><strong>Server log</strong> &mdash; conservati per il tempo necessario alla sicurezza (tipicamente 30-90 giorni), poi cancellati o anonimizzati</li>
+					<li><strong>Email ricevute</strong> &mdash; conservate per il tempo necessario alla conversazione, di norma non oltre 24 mesi salvo obblighi fiscali (10 anni per documenti contabili)</li>
+					<li><strong>localStorage</strong> &mdash; persistente fino a tua cancellazione manuale dal browser</li>
+				</ul>
+			</section>
+
+			<section id="accessibility" class="nes-container is-dark is-violet with-title fk-priv__sec">
+				<p class="title">08 / ACCESSIBILITY STATEMENT</p>
+
+				<p class="fk-priv__note">
+					<strong>Premessa onesta.</strong> Questo sito personale non rientra nell&apos;ambito di applicazione obbligatoria
+					dell&apos;European Accessibility Act (Direttiva UE 2019/882, in vigore dal 28 giugno 2025), che si applica
+					prevalentemente a e-commerce, servizi bancari, trasporti e libri elettronici destinati ai consumatori.
+					Aderisco comunque <strong>volontariamente</strong> alle linee guida WCAG 2.1 livello AA dove tecnicamente
+					compatibile con l&apos;estetica 8-bit del sito.
+				</p>
+
+				<h3 class="fk-priv__h3">Cosa &egrave; conforme</h3>
+				<ul class="fk-priv__list">
+					<li>Contrasto colori del testo body <strong>&ge; 4.5:1</strong> in entrambi i temi (dark synthwave e light Game Boy)</li>
+					<li>Skip-link "Skip to content" raggiungibile da tastiera</li>
+					<li>Focus rings visibili (3px lime, contrasto AAA) su tutti gli elementi interattivi</li>
+					<li>Touch target &ge; 44&times;44px su tutti i bottoni e link</li>
+					<li>Markup semantico (header, nav, main, footer, section, h1-h6 in ordine)</li>
+					<li>Attributi <code>aria-label</code> sui bottoni icon-only (theme toggle, audio toggle, hamburger)</li>
+					<li>Rispetto di <code>prefers-reduced-motion</code>: boot screen, type-on animation, griglia synthwave, scanlines vengono disattivate</li>
+					<li>Lang attribute (<code>lang="it"</code>) su <code>&lt;html&gt;</code></li>
+					<li>Immagini con attributo <code>alt</code> descrittivo</li>
+					<li>Navigazione completamente operabile da tastiera</li>
+				</ul>
+
+				<h3 class="fk-priv__h3">Limiti noti del tema 8-bit</h3>
+				<ul class="fk-priv__list">
+					<li>I titoli usano <strong>Press Start 2P</strong>, font pixel a bassa risoluzione: non ottimale per dislessia o ipovedenti. Il body usa VT323 con dimensioni leggibili. I paragrafi lunghi della pagina Background non sono mai resi in Press Start 2P.</li>
+					<li>L&apos;overlay CRT scanlines aggiunge texture visiva: pu&ograve; affaticare alcuni utenti. Rispetta <code>prefers-reduced-motion</code> ma non offre ancora un toggle manuale dedicato.</li>
+					<li>Il ritratto in hero &egrave; pixelizzato come scelta estetica: la versione raster originale ad alta risoluzione resta disponibile per chi necessita di un&apos;immagine standard (su richiesta via email).</li>
+					<li>L&apos;audio toggle &egrave; opt-in (default: OFF), quindi non genera mai suoni inaspettati.</li>
+					<li>Press Start 2P ha <strong>copertura glyph latina di base limitata</strong>: alcuni caratteri speciali italiani (es. &ograve; &ugrave;) potrebbero usare il fallback VT323 nei titoli.</li>
+				</ul>
+
+				<h3 class="fk-priv__h3">Feedback accessibilit&agrave;</h3>
+				<p>
+					Se incontri barriere o vuoi suggerire miglioramenti, scrivimi a
+					<a href="mailto:mail@federico.im?subject=Accessibility%20feedback">mail@federico.im</a>. Rispondo personalmente.
+				</p>
+			</section>
+
+			<section id="contatti" class="nes-container is-dark with-title fk-priv__sec">
+				<p class="title">09 / CONTATTI</p>
+				<p>Per ogni domanda relativa a privacy, dati personali, accessibilit&agrave; o richiesta di esercizio dei diritti:</p>
+				<ul class="fk-priv__list">
+					<li><strong>Email:</strong> <a href="mailto:mail@federico.im">mail@federico.im</a></li>
+					<li><strong>Sito di riferimento commerciale:</strong> <a href="https://calicchia.design">calicchia.design</a></li>
+				</ul>
+				<p class="fk-priv__note">Questa policy pu&ograve; essere aggiornata. La data riportata in cima riflette l&apos;ultima revisione. Le versioni storiche sono disponibili su richiesta.</p>
+			</section>
+
+		</article>
+	</div>
+</BaseLayout>
+
+<style>
+	.fk-priv-hero {
+		padding-block: var(--sp-16) var(--sp-8);
+		text-align: center;
+	}
+
+	.fk-priv-hero__eyebrow {
+		font-family: var(--f-display);
+		font-size: var(--fs-xs);
+		color: var(--c-blue);
+		letter-spacing: 0.1em;
+		margin-bottom: var(--sp-3);
+	}
+
+	.fk-priv-hero__title {
+		font-family: var(--f-display);
+		font-size: clamp(var(--fs-3xl), 8vw, var(--fs-5xl));
+		color: var(--c-pink);
+		text-shadow: var(--glow-pink);
+		letter-spacing: 0.04em;
+		margin: 0 0 var(--sp-4) 0;
+	}
+
+	.fk-priv-hero__sub {
+		font-family: var(--f-body);
+		font-size: var(--fs-md);
+		color: var(--c-text-dim);
+		max-width: 60ch;
+		margin-inline: auto;
+	}
+
+	.fk-priv-hero__sub strong {
+		color: var(--c-lime);
+	}
+
+	.fk-priv {
+		display: grid;
+		gap: var(--sp-8);
+		padding-block: var(--sp-8) var(--sp-16);
+		grid-template-columns: 1fr;
+	}
+
+	@media (min-width: 1024px) {
+		.fk-priv {
+			grid-template-columns: 280px 1fr;
+			align-items: flex-start;
+			gap: var(--sp-12);
+		}
+
+		.fk-priv__toc {
+			position: sticky;
+			top: 90px;
+			max-height: calc(100vh - 110px);
+			overflow-y: auto;
+		}
+	}
+
+	.fk-priv__toclist {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--sp-2);
+	}
+
+	.fk-priv__toclist li {
+		font-family: var(--f-body);
+		font-size: var(--fs-base);
+		line-height: var(--lh-snug);
+	}
+
+	.fk-priv__toclist a {
+		color: var(--c-text);
+		text-decoration: none;
+		display: block;
+		padding: var(--sp-2) var(--sp-3);
+		border-left: 3px solid transparent;
+		transition: all var(--t-fast) ease;
+	}
+
+	.fk-priv__toclist a:hover,
+	.fk-priv__toclist a:focus-visible {
+		color: var(--c-pink);
+		border-left-color: var(--c-pink);
+		background: var(--c-surface);
+		outline: none;
+	}
+
+	.fk-priv__body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--sp-6);
+	}
+
+	.fk-priv__sec {
+		scroll-margin-top: 90px;
+	}
+
+	.fk-priv__sec p {
+		font-family: var(--f-body);
+		font-size: var(--fs-base);
+		line-height: var(--lh-loose);
+		color: var(--c-text);
+		margin-bottom: var(--sp-3);
+	}
+
+	.fk-priv__sec p:last-child {
+		margin-bottom: 0;
+	}
+
+	.fk-priv__sec strong {
+		color: var(--c-pink);
+		text-shadow: var(--glow-pink);
+		font-weight: 400;
+	}
+
+	.fk-priv__sec a {
+		color: var(--c-blue);
+		text-decoration: underline;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 3px;
+	}
+
+	.fk-priv__sec a:hover,
+	.fk-priv__sec a:focus-visible {
+		color: var(--c-lime);
+		text-shadow: var(--glow-lime);
+	}
+
+	.fk-priv__sec code {
+		font-family: var(--f-mono);
+		font-size: var(--fs-base);
+		background: var(--c-surface);
+		color: var(--c-lime);
+		padding: 0 var(--sp-2);
+		border: 2px solid var(--c-border);
+	}
+
+	.fk-priv__h3 {
+		font-family: var(--f-display);
+		font-size: var(--fs-sm);
+		color: var(--c-blue);
+		text-shadow: var(--glow-blue);
+		letter-spacing: 0.06em;
+		margin-block: var(--sp-5) var(--sp-3);
+		line-height: var(--lh-snug);
+	}
+
+	.fk-priv__list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 var(--sp-4) 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--sp-2);
+	}
+
+	.fk-priv__list li {
+		padding: var(--sp-3);
+		border-left: 4px solid var(--c-blue);
+		background: var(--c-surface);
+		font-family: var(--f-body);
+		font-size: var(--fs-base);
+		line-height: var(--lh-loose);
+		color: var(--c-text);
+	}
+
+	.fk-priv__bigclaim {
+		font-family: var(--f-display);
+		font-size: var(--fs-md);
+		color: var(--c-lime);
+		text-shadow: var(--glow-lime);
+		letter-spacing: 0.04em;
+		line-height: var(--lh-snug);
+		padding: var(--sp-4);
+		border: 3px solid var(--c-lime);
+		text-align: center;
+		margin-bottom: var(--sp-4);
+	}
+
+	.fk-priv__bigclaim strong {
+		color: var(--c-lime);
+		text-shadow: var(--glow-lime);
+	}
+
+	.fk-priv__note {
+		font-family: var(--f-body);
+		font-size: var(--fs-base);
+		font-style: italic;
+		color: var(--c-text-dim);
+		padding: var(--sp-3);
+		border-left: 4px solid var(--c-yellow);
+		background: var(--c-surface);
+	}
+
+	.fk-priv__note strong {
+		color: var(--c-yellow);
+		text-shadow: 0 0 8px rgba(255, 209, 102, 0.4);
+	}
+</style>

@@ -1,46 +1,76 @@
 ---
 import CallToAction from './CallToAction.astro';
-import Icon from './Icon.astro';
 ---
 
-<aside>
-	<h2>Collaboriamo?</h2>
-	<CallToAction href="mailto:mail@federico.im">
-		Contattami
-		<Icon icon="paper-plane-tilt" size="1.2em" />
-	</CallToAction>
-</aside>
+<section class="fk-contact wrapper" aria-label="Contact">
+	<div class="nes-container is-dark is-pink with-title">
+		<p class="title">INSERT COIN</p>
+		<div class="fk-contact__inner">
+			<div class="fk-contact__copy">
+				<h2 class="fk-contact__heading">COLLABORIAMO?</h2>
+				<p class="fk-contact__sub">
+					Hai un progetto in mente? Mandami due righe e ti rispondo
+					entro 24 ore (di solito molto prima &mdash; salvo che stia
+					salvando la principessa).
+				</p>
+			</div>
+			<div class="fk-contact__cta">
+				<CallToAction href="mailto:mail@federico.im">
+					<span aria-hidden="true">&#9654;</span> CONTATTAMI
+				</CallToAction>
+				<p class="insert-coin">PRESS START TO CONTINUE</p>
+			</div>
+		</div>
+	</div>
+</section>
 
 <style>
-	aside {
+	.fk-contact {
+		padding-block: var(--sp-12);
+	}
+
+	.fk-contact__inner {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		gap: 3rem;
-		border-top: 1px solid var(--gray-800);
-		border-bottom: 1px solid var(--gray-800);
-		padding: 5rem 1.5rem;
-		background-color: var(--gray-999_40);
-		box-shadow: var(--shadow-sm);
+		gap: var(--sp-6);
+		align-items: flex-start;
 	}
 
-	h2 {
-		font-size: var(--text-xl);
-		text-align: center;
-		max-width: 15ch;
+	.fk-contact__heading {
+		font-family: var(--f-display);
+		font-size: clamp(var(--fs-xl), 3vw, var(--fs-3xl));
+		color: var(--c-pink);
+		text-shadow: var(--glow-pink);
+		letter-spacing: 0.04em;
+		line-height: var(--lh-tight);
+		margin-bottom: var(--sp-3);
 	}
 
-	@media (min-width: 50em) {
-		aside {
-			padding: 7.5rem;
+	.fk-contact__sub {
+		font-family: var(--f-body);
+		font-size: var(--fs-base);
+		color: var(--c-text);
+		line-height: var(--lh-loose);
+		max-width: 50ch;
+	}
+
+	.fk-contact__cta {
+		display: flex;
+		flex-direction: column;
+		gap: var(--sp-3);
+		align-items: flex-start;
+	}
+
+	@media (min-width: 768px) {
+		.fk-contact__inner {
 			flex-direction: row;
-			flex-wrap: wrap;
 			justify-content: space-between;
+			align-items: center;
+			gap: var(--sp-12);
 		}
 
-		h2 {
-			font-size: var(--text-3xl);
-			text-align: left;
+		.fk-contact__cta {
+			align-items: flex-end;
 		}
 	}
 </style>

@@ -1,8 +1,20 @@
 ---
-import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="OPS!" description="404 la pagina che stavi cercando non esiste">
-	<Hero title="OPS!" tagline="Forse ti sei perso, in questa poagina non c'è nulla" />
+<BaseLayout title="GAME OVER — 404" description="Pagina non trovata.">
+	<section class="game-over wrapper">
+		<p class="game-over__sub glow-blue">ERROR 404</p>
+		<h1 class="game-over__title">GAME OVER</h1>
+		<p class="game-over__sub">Hai preso una porta sbagliata, viaggiatore.</p>
+		<p class="game-over__sub">Questo livello non esiste piu&apos;.</p>
+
+		<a href="/" class="nes-btn is-primary">
+			<span aria-hidden="true">&#9654;</span> PRESS START TO CONTINUE
+		</a>
+
+		<p class="game-over__sub" style="margin-top: var(--sp-8);">
+			HI-SCORE: <span class="glow-lime">9999</span>
+		</p>
+	</section>
 </BaseLayout>

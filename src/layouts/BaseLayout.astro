@@ -1,12 +1,9 @@
 ---
-// Learn about using Astro layouts:
-// https://docs.astro.build/en/core-concepts/layouts/
-
-// Component Imports
 import MainHead from '../components/MainHead.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { ViewTransitions } from 'astro:transitions';
+import BootScreen from '../components/BootScreen.astro';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
 	title?: string | undefined;
@@ -19,97 +16,47 @@ const { title, description } = Astro.props;
 <html lang="it">
 	<head>
 		<MainHead title={title} description={description} />
-		<ViewTransitions />
+		<ClientRouter />
 	</head>
 	<body>
-		<div class="stack backgrounds">
-			<Nav />
+		<BootScreen />
+		<a href="#main" class="skip-link">Skip to content</a>
+		<div class="crt-scanlines" aria-hidden="true"></div>
+
+		<Nav />
+
+		<main id="main">
 			<slot />
-			<Footer />
-		</div>
+		</main>
+
+		<Footer />
 
 		<script>
-			// Add “loaded” class once the document has completely loaded.
-			addEventListener('load', () => document.documentElement.classList.add('loaded'));
+			// Live counters anchored to Federico's career start (2016-01-01).
+			// Updates any element with data-fk-counter on first paint and on
+			// every ClientRouter navigation, so values stay current without a rebuild.
+			function updateFkCounters() {
+				const start = Date.UTC(2016, 0, 1);
+				const now = Date.now();
+				const days = Math.floor((now - start) / 86_400_000);
+				const today = new Date();
+				let years = today.getUTCFullYear() - 2016;
+				const md = (today.getUTCMonth() << 5) + today.getUTCDate();
+				const startMd = (0 << 5) + 1;
+				if (md < startMd) years -= 1;
+				const fmtIt = (n: number) => n.toLocaleString('it-IT');
+
+				document.querySelectorAll<HTMLElement>('[data-fk-counter]').forEach((el) => {
+					const kind = el.dataset.fkCounter;
+					if (kind === 'days-since-2016') el.textContent = fmtIt(days);
+					else if (kind === 'years-since-2016') el.textContent = String(years);
+					else if (kind === 'years-since-2016-plus') el.textContent = years + '+';
+					else if (kind === 'level-since-2016') el.textContent = 'LV ' + String(years).padStart(2, '0');
+				});
+			}
+
+			updateFkCounters();
+			document.addEventListener('astro:page-load', updateFkCounters);
 		</script>
-
-		<style>
-			:root {
-				--_placeholder-bg: linear-gradient(transparent, transparent);
-				--bg-image-main: url('/assets/backgrounds/bg-main-light-800w.jpg');
-				--bg-image-main-curves: url('/assets/backgrounds/bg-main-light.svg');
-				--bg-image-subtle-1: var(--_placeholder-bg);
-				--bg-image-subtle-2: var(--_placeholder-bg);
-				--bg-image-footer: var(--_placeholder-bg);
-				--bg-svg-blend-mode: overlay;
-				--bg-blend-mode: darken;
-				--bg-image-aspect-ratio: 2.25;
-				--bg-scale: 1.68;
-				--bg-aspect-ratio: calc(var(--bg-image-aspect-ratio) / var(--bg-scale));
-				--bg-gradient-size: calc(var(--bg-scale) * 100%);
-			}
-
-			/*:root.theme-dark {
-				--bg-image-main: url('/assets/backgrounds/bg-main-dark-800w.jpg');
-				--bg-image-main-curves: url('/assets/backgrounds/bg-main-dark.svg');
-				--bg-svg-blend-mode: darken;
-				--bg-blend-mode: lighten;
-			}*/
-
-			/* These backgrounds are displayed below the fold, so we lazy load them
-			   once the `.loaded` class has been set.  */
-			:root.loaded {
-				--bg-image-subtle-1: url('/assets/backgrounds/bg-subtle-1-light-800w.jpg');
-				--bg-image-subtle-2: url('/assets/backgrounds/bg-subtle-2-light-800w.jpg');
-				--bg-image-footer: url('/assets/backgrounds/bg-footer-light-800w.jpg');
-			}
-			/*:root.loaded.theme-dark {
-				--bg-image-subtle-1: url('/assets/backgrounds/bg-subtle-1-dark-800w.jpg');
-				--bg-image-subtle-2: url('/assets/backgrounds/bg-subtle-2-dark-800w.jpg');
-				--bg-image-footer: url('/assets/backgrounds/bg-footer-dark-800w.jpg');
-			}*/
-
-			@media (min-width: 50em) {
-				:root {
-					--bg-scale: 1;
-					--bg-image-main: url('/assets/backgrounds/bg-main-light-1440w.jpg');
-				}
-				/*:root.theme-dark {
-					--bg-image-main: url('/assets/backgrounds/bg-main-dark-1440w.jpg');
-				}*/
-
-				:root.loaded {
-					--bg-image-subtle-1: url('/assets/backgrounds/bg-subtle-1-light-1440w.jpg');
-					--bg-image-subtle-2: url('/assets/backgrounds/bg-subtle-2-light-1440w.jpg');
-					--bg-image-footer: url('/assets/backgrounds/bg-footer-light-1440w.jpg');
-				}
-				/*:root.loaded.theme-dark {
-					--bg-image-subtle-1: url('/assets/backgrounds/bg-subtle-1-dark-1440w.jpg');
-					--bg-image-subtle-2: url('/assets/backgrounds/bg-subtle-2-dark-1440w.jpg');
-					--bg-image-footer: url('/assets/backgrounds/bg-footer-dark-1440w.jpg');
-				}*/
-			}
-
-			.backgrounds {
-				min-height: 100%;
-				isolation: isolate;
-				background:
-					/*noise*/ url('/assets/backgrounds/noise.png') top center/220px repeat,
-					/*footer*/ var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
-					/*header1*/ var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
-					/*header2*/ var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
-					/*base*/ var(--gray-999);
-				background-blend-mode: /*noise*/ overlay, /*footer*/ var(--bg-blend-mode),
-					/*header1*/ var(--bg-svg-blend-mode), /*header2*/ normal, /*base*/ normal;
-			}
-			@media (forced-colors: active) {
-				/* Deactivate custom backgrounds for high contrast users. */
-				.backgrounds {
-					background: none;
-					background-blend-mode: none;
-					--bg-gradient-size: none;
-				}
-			}
-		</style>
 	</body>
 </html>

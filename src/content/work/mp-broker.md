@@ -17,7 +17,6 @@ Per la navigazione da Computer ho voluto aggiungere nella sezione dei servizi, u
 
 - <a href="https://emmepi.broker">emmepi.broker</a>
 
-<video style="max-width:100%;border-radius:20px;border:1px solid var(--gray-800);" src="https://calicchia.design/wp-content/uploads/2023/04/Mpbroker-1.mp4" autoplay="" loop="" muted="muted" controlslist="nodownload" data-video="0"></video>
 <img
 					src="/assets/mp-broker-1.webp"
 					alt="Chi Siamo MP Broker"

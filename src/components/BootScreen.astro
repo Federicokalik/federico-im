@@ -1,0 +1,49 @@
+---
+// Brief retro boot animation; shows once per session.
+// Hidden via CSS before paint if html[data-boot-seen="1"] (set by MainHead head script).
+// Skippable on any tap/click/key. Hidden entirely if prefers-reduced-motion.
+---
+
+<div id="boot-screen" class="boot-screen" role="dialog" aria-label="Loading">
+	<div class="boot-screen__title">FEDERICO.IM</div>
+	<div class="boot-screen__line">v2.0 &middot; SYSTEM BOOT...</div>
+	<div class="boot-screen__progress" aria-hidden="true">
+		<div class="boot-screen__progress-bar"></div>
+	</div>
+	<div class="boot-screen__line">PRESS START 2 SKIP</div>
+</div>
+
+<script>
+	function initBoot() {
+		var boot = document.getElementById('boot-screen');
+		if (!boot) return;
+
+		var seen = false;
+		try { seen = sessionStorage.getItem('fk-boot-seen') === '1'; } catch (e) {}
+
+		var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		if (seen || reduced) {
+			boot.dataset.hidden = 'true';
+			document.documentElement.dataset.bootSeen = '1';
+			return;
+		}
+
+		var hide = function () {
+			boot.dataset.hidden = 'true';
+			try { sessionStorage.setItem('fk-boot-seen', '1'); } catch (e) {}
+			document.documentElement.dataset.bootSeen = '1';
+			window.removeEventListener('keydown', hide);
+			window.removeEventListener('click', hide);
+			window.removeEventListener('touchstart', hide);
+		};
+
+		window.addEventListener('keydown', hide);
+		window.addEventListener('click', hide);
+		window.addEventListener('touchstart', hide, { passive: true });
+		setTimeout(hide, 1500);
+	}
+
+	initBoot();
+	document.addEventListener('astro:page-load', initBoot);
+</script>

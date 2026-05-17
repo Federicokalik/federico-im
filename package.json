@@ -1,7 +1,7 @@
 {
 	"name": "federico.im",
 	"type": "module",
-	"version": "1.0.1",
+	"version": "2.0.0",
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
@@ -10,7 +10,10 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/react": "^3.0.9",
-		"astro": "^4.2.6"
+		"@fontsource/press-start-2p": "^5.2.5",
+		"@fontsource/vt323": "^5.2.5",
+		"astro": "^6.3.1",
+		"bulma": "^1.0.4",
+		"nes.css": "^2.3.0"
 	}
 }

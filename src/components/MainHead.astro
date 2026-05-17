@@ -1,5 +1,12 @@
 ---
+// === CSS imports (ordered: bulma helpers → nes.css → fonts → tokens → overrides → effects) ===
+import 'bulma/css/versions/bulma-no-dark-mode.min.css';
+import 'nes.css/css/nes.min.css';
+import '@fontsource/press-start-2p/400.css';
+import '@fontsource/vt323/400.css';
 import '../styles/global.css';
+import '../styles/nes-overrides.css';
+import '../styles/effects.css';
 
 interface Props {
 	title?: string | undefined;
@@ -7,35 +14,30 @@ interface Props {
 }
 
 const {
-	title = 'Federico.im Portfolio',
-	description = 'Web Designer della provincia di Frosinone, certificato da GOOGLE nel Digital Marketing. aiuto imprenditori, hobbisti, artigiani ed aziende a migliorare la loro visibilità online, creando un’identità digitale che li rappresenti.',
+	title = 'Federico.im — Web Designer 8-bit',
+	description = 'Federico Calicchia — Web Designer della provincia di Frosinone. WordPress, Astro, Digital Marketing, SEO. Oltre 9 anni di esperienza.',
 } = Astro.props;
 ---
 
 <meta charset="UTF-8" />
 <meta name="description" property="og:description" content={description} />
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content="#050714" />
+<meta property="og:title" content={title} />
+<meta property="og:type" content="website" />
 <title>{title}</title>
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<script is:inline>
-	// This code is inlined in the head to make dark mode instant & blocking.
-	const getThemePreference = () => {
-		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-			return localStorage.getItem('theme');
-		}
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-	};
-	const isDark = getThemePreference() === 'dark';
-	document.documentElement.classList[isDark ? 'add' : 'remove']('theme-dark');
 
-	if (typeof localStorage !== 'undefined') {
-		// Watch the document element and persist user preference when it changes.
-		const observer = new MutationObserver(() => {
-			const isDark = document.documentElement.classList.contains('theme-dark');
-			localStorage.setItem('theme', isDark ? 'dark' : 'light');
-		});
-		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-	}
+<script is:inline>
+	// Boot: if user already saw the boot screen this session, mark <html>
+	// so the boot screen is hidden by CSS before first paint.
+	(function () {
+		try {
+			if (sessionStorage.getItem('fk-boot-seen') === '1') {
+				document.documentElement.dataset.bootSeen = '1';
+			}
+		} catch (e) {}
+	})();
 </script>

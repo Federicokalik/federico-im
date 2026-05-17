@@ -1,0 +1,107 @@
+---
+// SOUND ON/OFF toggle. Default OFF.
+// Uses Web Audio API square-wave beeps. No mp3 assets.
+// Persisted in localStorage. Hooks click/hover on .nes-btn and a[href] elements.
+---
+
+<button
+	type="button"
+	id="fk-audio-toggle"
+	class="nes-btn"
+	aria-label="Toggle sound effects"
+	data-state="off"
+>
+	<span aria-hidden="true">SOUND:</span>
+	<span data-audio-label>OFF</span>
+</button>
+
+<script is:inline>
+	(function () {
+		var btn = document.getElementById('fk-audio-toggle');
+		if (!btn) return;
+		var label = btn.querySelector('[data-audio-label]');
+
+		var enabled = false;
+		try { enabled = localStorage.getItem('fk-audio') === '1'; } catch (e) {}
+
+		var ctx = null;
+
+		function ensureCtx() {
+			if (ctx) return ctx;
+			try {
+				var Ctor = window.AudioContext || window.webkitAudioContext;
+				ctx = new Ctor();
+			} catch (e) {
+				ctx = null;
+			}
+			return ctx;
+		}
+
+		function beep(freq, dur, type) {
+			if (!enabled) return;
+			var ac = ensureCtx();
+			if (!ac) return;
+			if (ac.state === 'suspended') ac.resume();
+			var osc = ac.createOscillator();
+			var gain = ac.createGain();
+			osc.type = type || 'square';
+			osc.frequency.value = freq;
+			gain.gain.setValueAtTime(0.08, ac.currentTime);
+			gain.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + dur);
+			osc.connect(gain).connect(ac.destination);
+			osc.start();
+			osc.stop(ac.currentTime + dur);
+		}
+
+		function refresh() {
+			btn.dataset.state = enabled ? 'on' : 'off';
+			if (label) label.textContent = enabled ? 'ON' : 'OFF';
+		}
+
+		refresh();
+
+		btn.addEventListener('click', function () {
+			enabled = !enabled;
+			try { localStorage.setItem('fk-audio', enabled ? '1' : '0'); } catch (e) {}
+			refresh();
+			if (enabled) beep(880, 0.08);
+		});
+
+		document.addEventListener('click', function (e) {
+			var target = e.target;
+			if (!target) return;
+			if (target === btn) return;
+			var el = target.closest && target.closest('.nes-btn, a.cartridge, button');
+			if (el) beep(440, 0.06);
+		}, true);
+
+		document.addEventListener('mouseover', function (e) {
+			var target = e.target;
+			if (!target || !target.closest) return;
+			var el = target.closest('.nes-btn, a.cartridge');
+			if (el && !el.dataset.fkHovered) {
+				el.dataset.fkHovered = '1';
+				beep(660, 0.03, 'triangle');
+			}
+		});
+
+		document.addEventListener('mouseout', function (e) {
+			var target = e.target;
+			if (!target || !target.closest) return;
+			var el = target.closest('.nes-btn, a.cartridge');
+			if (el) delete el.dataset.fkHovered;
+		});
+	})();
+</script>
+
+<style>
+	#fk-audio-toggle {
+		font-size: var(--fs-xs);
+		padding: 6px 10px;
+		min-height: 36px;
+	}
+	#fk-audio-toggle[data-state="on"] {
+		color: var(--c-bg);
+		background-color: var(--c-lime);
+	}
+</style>
